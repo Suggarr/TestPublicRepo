@@ -2,6 +2,7 @@
 using Lab6TestTask.Models;
 using Lab6TestTask.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Lab6TestTask.Enums;
 
 namespace Lab6TestTask.Services.Implementations;
 
@@ -21,7 +22,7 @@ public class ProductService : IProductService
     public async Task<Product> GetProductAsync()
     {
         return await _dbContext.Products.
-            Where(p => p.Status == Enums.ProductStatus.Reserved)
+            Where(p => p.Status == ProductStatus.Reserved)
             .OrderByDescending(p => p.Price)
             .FirstAsync();
     }
